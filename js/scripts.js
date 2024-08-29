@@ -328,6 +328,12 @@ function generateExplorerLink(cryptoSelectId, address, linkContainerId) {
         url = `https://blockchair.com/litecoin/address/${address}`;
     } else if (crypto === 'ripple') {
         url = `https://xrpscan.com/account/${address}`;
+    } else if (crypto === 'usdt') {
+        // Tether kann auf verschiedenen Blockchains existieren, hier ist ein Beispiel für Ethereum-basierte USDT
+        url = `https://etherscan.io/address/${address}`;
+    } else if (crypto === 'usdc') {
+        // USD Coin kann auch auf verschiedenen Blockchains existieren, hier ist ein Beispiel für Ethereum-basierte USDC
+        url = `https://etherscan.io/address/${address}`;
     }
 
     if (url) {
