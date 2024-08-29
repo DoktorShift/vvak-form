@@ -127,14 +127,46 @@ function addTab() {
 
 function removeTab(event, tabId) {
     event.stopPropagation();
+    
+    // Sicherheitsabfrage vor dem Löschen
+    if (!confirm("Sind Sie sicher, dass Sie diese Transaktion löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.")) {
+        return;
+    }
+
+    // Entfernen des Tabs und des zugehörigen Inhalts
     document.getElementById(tabId).remove();
     event.currentTarget.parentNode.remove();
+
+    // Reihenfolge der Tabs neu ordnen
+    const tabs = document.querySelectorAll('.tab-link');
+    tabs.forEach((tab, index) => {
+        const newTabId = `tab-${index + 1}`;
+        const oldTabId = tab.getAttribute('onclick').match(/'(.*?)'/)[1];
+
+        tab.setAttribute('onclick', `openTab(event, '${newTabId}')`);
+        tab.innerHTML = `Transaktion ${index + 1} <span class="tab-close" onclick="removeTab(event, '${newTabId}')">&times;</span>`;
+
+        // Aktualisieren der Tab-Inhalte
+        const tabContent = document.getElementById(oldTabId);
+        tabContent.id = newTabId;
+
+        // Aktualisieren der IDs und Namen der Eingabefelder innerhalb des Tabs
+        const inputs = tabContent.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            const name = input.name.replace(/\d+/, index + 1);
+            const id = input.id.replace(/\d+/, index + 1);
+            input.name = name;
+            input.id = id;
+        });
+    });
+
+    tabCounter = tabs.length;
 
     // Öffne den ersten Tab, wenn der entfernte Tab aktiv war
     if (document.querySelector('.tab-link.active')) {
         openTab({ currentTarget: document.querySelector('.tab-link.active') }, document.querySelector('.tab-content.active').id);
-    } else {
-        openTab({ currentTarget: document.querySelector('.tab-link') }, 'tab-1');
+    } else if (tabs.length > 0) {
+        openTab({ currentTarget: tabs[0] }, `tab-1`);
     }
 }
 
