@@ -22,24 +22,13 @@
         <!-- Inhalt der Reiter -->
         <form action="#" method="post">
             <div id="tab-1" class="tab-content active">
-
                 <!-- Transaktionsdetails -->
                 <div class="form-section">
                     <div class="section-title">Transaktionsdetails</div>
-                    <label for="zeitpunkt-1">Zeitpunkt der Transaktion
-                        <div class="tooltip-icon">
-                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
-                            <span class="tooltiptext">Datum und Uhrzeit, zu der die Transaktion durchgeführt wurde.</span>
-                        </div>
-                    </label>
+                    <label for="zeitpunkt-1">Zeitpunkt der Transaktion</label>
                     <input type="datetime-local" id="zeitpunkt-1" name="zeitpunkt-1" required>
                     
-                    <label for="krypto-platform-1">Krypto-Börse
-                        <div class="tooltip-icon">
-                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
-                            <span class="tooltiptext">Die Handelsplattform oder Börse, über die die Transaktion ausgeführt wurde. Falls ein privates Wallet (unhosted Wallet) verwendet wurde, bitte Name unter "Andere" angeben.</span>
-                        </div>
-                    </label>
+                    <label for="krypto-platform-1">Krypto-Börse</label>
                     <select id="krypto-platform-1" name="krypto-platform-1" required onchange="toggleAndereWaehung(this, 'andere-boerse-1')">
                         <option value="" disabled selected>Wählen Sie eine Börse</option>
                         <option value="binance">Binance</option>
@@ -59,13 +48,8 @@
                     </select>
                     <input type="text" id="andere-boerse-1" name="andere-boerse-1" placeholder="Bitte Börse oder Name des Wallets angeben" style="display: none;">
 
-                    <label for="waehrung-1">Verwendete Kryptowährung
-                        <div class="tooltip-icon">
-                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
-                            <span class="tooltiptext">Wählen Sie die Kryptowährung aus, die der Täter verwendet hat.</span>
-                        </div>
-                    </label>
-                    <select id="waehrung-1" name="waehrung-1[]" required onchange="toggleAndereWaehung(this, 'andere-kryptowaehrung-1'); updateCryptoLabel('waehrung-1', 'betrag-krypto-1');">
+                    <label for="waehrung-1">Verwendete Kryptowährung</label>
+                    <select id="waehrung-1" name="waehrung-1[]" required onchange="toggleAndereWaehung(this, 'andere-kryptowaehrung-1'); updateCryptoLabel('waehrung-1', 'crypto-label-1');">
                         <option value="" disabled selected>Wählen Sie eine Kryptowährung</option>
                         <option value="bitcoin">Bitcoin (BTC)</option>
                         <option value="ethereum">Ethereum (ETH)</option>
@@ -81,12 +65,7 @@
                 <!-- Vermögensübertragung/Stehlgut -->
                 <div class="form-section">
                     <div class="section-title">Vermögensübertragung/Stehlgut</div>
-                    <label for="betrag-landeswaehrung-1">Gesendeter Betrag in Landeswährung
-                        <div class="tooltip-icon">
-                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
-                            <span class="tooltiptext">Der Betrag in lokaler Währung, der gesendet wurde.</span>
-                        </div>
-                    </label>
+                    <label for="betrag-landeswaehrung-1">Gesendeter Betrag in Landeswährung</label>
                     <input type="text" id="betrag-landeswaehrung-1" name="betrag-landeswaehrung-1" required placeholder="Beispiel: 500 EUR">
 
                     <label for="währung-landeswaehrung-1">Währung</label>
@@ -95,12 +74,7 @@
                         <option value="usd">US-Dollar (USD)</option>
                     </select>
 
-                    <label for="betrag-krypto-1">Gesendeter Betrag in <span id="crypto-label-1">ausgewählter Kryptowährung</span>
-                        <div class="tooltip-icon">
-                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
-                            <span class="tooltiptext">Der Betrag in der ausgewählten Kryptowährung, der gesendet wurde (z.B. 0.025 BTC).</span>
-                        </div>
-                    </label>
+                    <label for="betrag-krypto-1">Gesendeter Betrag in <span id="crypto-label-1">ausgewählter Kryptowährung</span></label>
                     <input type="text" id="betrag-krypto-1" name="betrag-krypto-1" placeholder="Beispiel: 0.025 BTC">
                 </div>
 
@@ -108,68 +82,33 @@
                 <div class="form-section">
                     <div class="section-title">Täterspezifische Daten</div>
 
-                    <label for="krypto-adresse-1">Krypto-Adresse des Beschuldigten
-                        <div class="tooltip-icon">
-                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
-                            <span class="tooltiptext">Geben Sie die Adresse ein, an welche die Kryptowährung gesendet wurde.</span>
-                        </div>
-                    </label>
+                    <label for="krypto-adresse-1">Krypto-Adresse des Beschuldigten</label>
                     <input type="text" id="krypto-adresse-1" name="krypto-adresse-1[]" required placeholder="Beispiel: bc1qhflsyynztk8787">
                     
-                    <label for="tx-hash-1">TX-Hash (Individualkennung der Transaktion)
-                        <div class="tooltip-icon">
-                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
-                            <span class="tooltiptext">Dies ist die eindeutige Kennung der Transaktion. Wenn von einer zentralen Börse gesendet wurde, kann diese auch als Transaktions-ID benannt werden.</span>
-                        </div>
-                    </label>
+                    <label for="tx-hash-1">TX-Hash (Individualkennung der Transaktion)</label>
                     <input type="text" id="tx-hash-1" name="tx-hash-1[]" placeholder="Beispiel: 4b8b1d5b3e2b...">
                 </div>
 
                 <!-- Geschädigtendaten -->
                 <div class="form-section">
                     <div class="section-title">Geschädigtendaten</div>
-                    <label for="krypto-adresse-geschaedigter-1">Krypto-Adresse des Geschädigten
-                        <div class="tooltip-icon">
-                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
-                            <span class="tooltiptext">Falls von einer zentralen Börse versendet wurde, kann das Feld freigelassen werden.</span>
-                        </div>
-                    </label>
+                    <label for="krypto-adresse-geschaedigter-1">Krypto-Adresse des Geschädigten</label>
                     <input type="text" id="krypto-adresse-geschaedigter-1" name="krypto-adresse-geschaedigter-1" placeholder="Beispiel: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa">
 
-                    <label for="e-mail-adresse-geschaedigter-1">E-Mail-Adresse des Geschädigten
-                        <div class="tooltip-icon">
-                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
-                            <span class="tooltiptext">Die E-Mail-Adresse, die der Geschädigte verwendet hat, um sich auf der Plattform/Börse einzuloggen.</span>
-                        </div>
-                    </label>
+                    <label for="e-mail-adresse-geschaedigter-1">E-Mail-Adresse des Geschädigten</label>
                     <input type="text" id="e-mail-adresse-geschaedigter-1" name="e-mail-adresse-geschaedigter-1" placeholder="Beispiel: email@gmail.com">
 
-                    <label for="benutzername-geschaedigter-1">Benutzername des Geschädigten
-                        <div class="tooltip-icon">
-                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
-                            <span class="tooltiptext">Der Benutzername des Geschädigten auf der Plattform/Börse.</span>
-                        </div>
-                    </label>
+                    <label for="benutzername-geschaedigter-1">Benutzername des Geschädigten</label>
                     <input type="text" id="benutzername-geschaedigter-1" name="benutzername-geschaedigter-1" placeholder="Beispiel: Mein Benutzername">
                 </div>
 
                 <!-- Beschreibung und Hinweise -->
                 <div class="form-section">
                     <div class="section-title">Beschreibung und Hinweise</div>
-                    <label for="beschreibung-1">Beschreibung der Kontaktaufnahme
-                        <div class="tooltip-icon">
-                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
-                            <span class="tooltiptext">Beschreiben Sie, wie der Kontakt zwischen dem Täter und dem Geschädigten zustande kam.</span>
-                        </div>
-                    </label>
+                    <label for="beschreibung-1">Beschreibung der Kontaktaufnahme</label>
                     <textarea id="beschreibung-1" name="beschreibung-1" placeholder="Beschreiben Sie, wie der Kontakt hergestellt wurde, und weitere relevante Informationen."></textarea>
 
-                    <label for="weitere-hinweise-1">Weitere Hinweise (Wallets, Anbieter, Apps etc.)
-                        <div class="tooltip-icon">
-                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
-                            <span class="tooltiptext">Geben Sie zusätzliche Informationen an, die für die Ermittlungen hilfreich sein könnten.</span>
-                        </div>
-                    </label>
+                    <label for="weitere-hinweise-1">Weitere Hinweise (Wallets, Anbieter, Apps etc.)</label>
                     <textarea id="weitere-hinweise-1" name="weitere-hinweise-1" placeholder="Geben Sie zusätzliche Informationen an, die für die Untersuchung hilfreich sein könnten."></textarea>
                 </div>
             </div>
