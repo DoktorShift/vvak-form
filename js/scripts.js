@@ -143,66 +143,52 @@ function showSummary() {
     const summaryContent = document.getElementById('summary-content');
     summaryContent.innerHTML = '';  // Clear previous content
 
-    const formData = new FormData(document.querySelector('form'));
-
-    let currentTab = 1;
     let transactionData = '';
+    let currentTab = 1;
 
-    formData.forEach((value, key) => {
-        if (value.trim() !== '') {  // Check if the field is not empty
-            if (key.includes(`zeitpunkt-${currentTab}`)) {
-                if (transactionData) {
-                    transactionData += `</div>`; // Close previous card
-                    currentTab++;
-                }
-                transactionData += `<div class="card"><h3>Transaktion ${currentTab}</h3>`;
-                transactionData += `<br><strong>Transaktionsdetails</strong><br>`;
-            }
+    while (document.getElementById(`tab-${currentTab}`)) {
+        transactionData += `<div class="card"><h3>Transaktion ${currentTab}</h3>`;
 
-            if (key.includes(`zeitpunkt-${currentTab}`)) {
-                transactionData += `<strong>Uhrzeit:</strong> ${value}<br>`;
-            } else if (key.includes(`krypto-platform-${currentTab}`)) {
-                transactionData += `<strong>Krypto-Börse:</strong> ${value}<br>`;
-            } else if (key.includes(`waehrung-${currentTab}`)) {
-                transactionData += `<strong>Verwendete Kryptowährung:</strong> ${value}<br>`;
-            } else if (key.includes(`betrag-landeswaehrung-${currentTab}`)) {
-                if (!transactionData.includes('<strong>Vermögensübertragung/Stehlgut</strong>')) {
-                    transactionData += `<br><strong>Vermögensübertragung/Stehlgut</strong><br>`;
-                }
-                transactionData += `<strong>Gesendeter Betrag in Landeswährung:</strong> ${value}<br>`;
-            } else if (key.includes(`währung-landeswaehrung-${currentTab}`)) {
-                transactionData += `<strong>Währung:</strong> ${value}<br>`;
-            } else if (key.includes(`betrag-krypto-${currentTab}`)) {
-                transactionData += `<strong>Gesendeter Betrag in der Kryptowährung:</strong> ${value}<br>`;
-            } else if (key.includes(`krypto-adresse-${currentTab}`)) {
-                if (!transactionData.includes('<strong>Täterspezifische Daten</strong>')) {
-                    transactionData += `<br><strong>Täterspezifische Daten</strong><br>`;
-                }
-                transactionData += `<strong>Krypto-Adresse des Beschuldigten:</strong> ${value}<br>`;
-            } else if (key.includes(`tx-hash-${currentTab}`)) {
-                transactionData += `<strong>TX-Hash (Individualkennung der Transaktion):</strong> ${value}<br>`;
-            } else if (key.includes(`krypto-adresse-geschaedigter-${currentTab}`)) {
-                if (!transactionData.includes('<strong>Geschädigtendaten</strong>')) {
-                    transactionData += `<br><strong>Geschädigtendaten</strong><br>`;
-                }
-                transactionData += `<strong>Krypto-Adresse des Geschädigten:</strong> ${value}<br>`;
-            } else if (key.includes(`e-mail-adresse-geschaedigter-${currentTab}`)) {
-                transactionData += `<strong>E-Mail:</strong> ${value}<br>`;
-            } else if (key.includes(`benutzername-geschaedigter-${currentTab}`)) {
-                transactionData += `<strong>Benutzername:</strong> ${value}<br>`;
-            } else if (key.includes(`beschreibung-${currentTab}`)) {
-                if (!transactionData.includes('<strong>Beschreibung und Hinweise</strong>')) {
-                    transactionData += `<br><strong>Beschreibung und Hinweise</strong><br>`;
-                }
-                transactionData += `<strong>Beschreibung der Kontaktaufnahme:</strong> ${value}<br>`;
-            } else if (key.includes(`weitere-hinweise-${currentTab}`)) {
-                transactionData += `<strong>Weitere Hinweise (Wallets, Anbieter, Apps, Kontaktdaten etc.):</strong> ${value}<br>`;
-            }
-        }
-    });
+        const time = document.getElementById(`zeitpunkt-${currentTab}`).value;
+        const platform = document.getElementById(`krypto-platform-${currentTab}`).value;
+        const currency = document.getElementById(`waehrung-${currentTab}`).value;
+        const amountFiat = document.getElementById(`betrag-landeswaehrung-${currentTab}`).value;
+        const fiatCurrency = document.getElementById(`währung-landeswaehrung-${currentTab}`).value;
+        const amountCrypto = document.getElementById(`betrag-krypto-${currentTab}`).value;
+        const suspectAddress = document.getElementById(`krypto-adresse-${currentTab}`).value;
+        const txHash = document.getElementById(`tx-hash-${currentTab}`).value;
+        const victimAddress = document.getElementById(`krypto-adresse-geschaedigter-${currentTab}`).value;
+        const victimEmail = document.getElementById(`e-mail-adresse-geschaedigter-${currentTab}`).value;
+        const victimUsername = document.getElementById(`benutzername-geschaedigter-${currentTab}`).value;
+        const description = document.getElementById(`beschreibung-${currentTab}`).value;
+        const additionalInfo = document.getElementById(`weitere-hinweise-${currentTab}`).value;
 
-    if (transactionData) {
-        transactionData += `</div>`;  // Close last card
+        transactionData += `<br><strong>Transaktionsdetails</strong><br>`;
+        if (time) transactionData += `<strong>Uhrzeit:</strong> ${time}<br>`;
+        if (platform) transactionData += `<strong>Krypto-Börse:</strong> ${platform}<br>`;
+        if (currency) transactionData += `<strong>Verwendete Kryptowährung:</strong> ${currency}<br>`;
+
+        transactionData += `<br><strong>Vermögensübertragung/Stehlgut</strong><br>`;
+        if (amountFiat) transactionData += `<strong>Gesendeter Betrag in Landeswährung:</strong> ${amountFiat}<br>`;
+        if (fiatCurrency) transactionData += `<strong>Währung:</strong> ${fiatCurrency}<br>`;
+        if (amountCrypto) transactionData += `<strong>Gesendeter Betrag in der Kryptowährung:</strong> ${amountCrypto}<br>`;
+
+        transactionData += `<br><strong>Täterspezifische Daten</strong><br>`;
+        if (suspectAddress) transactionData += `<strong>Krypto-Adresse des Beschuldigten:</strong> ${suspectAddress}<br>`;
+        if (txHash) transactionData += `<strong>TX-Hash (Individualkennung der Transaktion):</strong> ${txHash}<br>`;
+
+        transactionData += `<br><strong>Geschädigtendaten</strong><br>`;
+        if (victimAddress) transactionData += `<strong>Krypto-Adresse des Geschädigten:</strong> ${victimAddress}<br>`;
+        if (victimEmail) transactionData += `<strong>E-Mail:</strong> ${victimEmail}<br>`;
+        if (victimUsername) transactionData += `<strong>Benutzername:</strong> ${victimUsername}<br>`;
+
+        transactionData += `<br><strong>Beschreibung und Hinweise</strong><br>`;
+        if (description) transactionData += `<strong>Beschreibung der Kontaktaufnahme:</strong> ${description}<br>`;
+        if (additionalInfo) transactionData += `<strong>Weitere Hinweise (Wallets, Anbieter, Apps, Kontaktdaten etc.):</strong> ${additionalInfo}<br>`;
+
+        transactionData += `</div>`;  // Close the card
+
+        currentTab++;
     }
 
     summaryContent.innerHTML = transactionData;  // Append all transaction data
