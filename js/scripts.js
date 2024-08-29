@@ -91,7 +91,9 @@ function addTab() {
             <div class="section-title">Täterspezifische Daten</div>
 
             <label for="krypto-adresse-${tabCounter}">Krypto-Adresse des Beschuldigten</label>
-            <input type="text" id="krypto-adresse-${tabCounter}" name="krypto-adresse-${tabCounter}[]" required placeholder="Beispiel: bc1qhflsyynztk8787">
+            <input type="text" id="krypto-adresse-${tabCounter}" name="krypto-adresse-${tabCounter}[]" required placeholder="Beispiel: bc1qhflsyynztk8787" onchange="generateExplorerLink('waehrung-${tabCounter}', this.value, 'btc-explorer-link-${tabCounter}')">
+            <!-- Platz für den Explorer-Link -->
+            <div id="btc-explorer-link-${tabCounter}"></div>
             
             <label for="tx-hash-${tabCounter}">TX-Hash (Individualkennung der Transaktion)</label>
             <input type="text" id="tx-hash-${tabCounter}" name="tx-hash-${tabCounter}[]" placeholder="Beispiel: 4b8b1d5b3e2b...">
@@ -100,7 +102,9 @@ function addTab() {
         <div class="form-section">
             <div class="section-title">Geschädigtendaten</div>
             <label for="krypto-adresse-geschaedigter-${tabCounter}">Krypto-Adresse des Geschädigten</label>
-            <input type="text" id="krypto-adresse-geschaedigter-${tabCounter}" name="krypto-adresse-geschaedigter-${tabCounter}" placeholder="Beispiel: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa">
+            <input type="text" id="krypto-adresse-geschaedigter-${tabCounter}" name="krypto-adresse-geschaedigter-${tabCounter}" placeholder="Beispiel: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa" onchange="generateExplorerLink('waehrung-${tabCounter}', this.value, 'btc-explorer-link-geschaedigter-${tabCounter}')">
+            <!-- Platz für den Explorer-Link -->
+            <div id="btc-explorer-link-geschaedigter-${tabCounter}"></div>
 
             <label for="e-mail-adresse-geschaedigter-${tabCounter}">E-Mail-Adresse des Geschädigten</label>
             <input type="text" id="e-mail-adresse-geschaedigter-${tabCounter}" name="e-mail-adresse-geschaedigter-${tabCounter}" placeholder="Beispiel: email@gmail.com">
@@ -310,4 +314,25 @@ function updateCryptoLabel(selectId, labelId) {
     const selectElement = document.getElementById(selectId);
     const labelElement = document.getElementById(labelId);
     labelElement.textContent = selectElement.options[selectElement.selectedIndex].textContent;
+}
+
+function generateExplorerLink(cryptoSelectId, address, linkContainerId) {
+    const crypto = document.getElementById(cryptoSelectId).value;
+    let url = '';
+
+    if (crypto === 'bitcoin') {
+        url = `https://mempool.space/address/${address}`;
+    } else if (crypto === 'ethereum') {
+        url = `https://etherscan.io/address/${address}`;
+    } else if (crypto === 'litecoin') {
+        url = `https://blockchair.com/litecoin/address/${address}`;
+    } else if (crypto === 'ripple') {
+        url = `https://xrpscan.com/account/${address}`;
+    }
+
+    if (url) {
+        document.getElementById(linkContainerId).innerHTML = `<a href="${url}" target="_blank">Transaktion anzeigen</a>`;
+    } else {
+        document.getElementById(linkContainerId).innerHTML = ''; // Clear the link if no valid URL
+    }
 }
