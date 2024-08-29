@@ -83,7 +83,9 @@
                     <div class="section-title">Täterspezifische Daten</div>
 
                     <label for="krypto-adresse-1">Krypto-Adresse des Beschuldigten</label>
-                    <input type="text" id="krypto-adresse-1" name="krypto-adresse-1[]" required placeholder="Beispiel: bc1qhflsyynztk8787">
+                    <input type="text" id="krypto-adresse-1" name="krypto-adresse-1[]" required placeholder="Beispiel: bc1qhflsyynztk8787" onchange="generateExplorerLink('waehrung-1', this.value, 'btc-explorer-link-1')">
+                    <!-- Platz für den Explorer-Link -->
+                    <div id="btc-explorer-link-1"></div>
                     
                     <label for="tx-hash-1">TX-Hash (Individualkennung der Transaktion)</label>
                     <input type="text" id="tx-hash-1" name="tx-hash-1[]" placeholder="Beispiel: 4b8b1d5b3e2b...">
@@ -93,7 +95,9 @@
                 <div class="form-section">
                     <div class="section-title">Geschädigtendaten</div>
                     <label for="krypto-adresse-geschaedigter-1">Krypto-Adresse des Geschädigten</label>
-                    <input type="text" id="krypto-adresse-geschaedigter-1" name="krypto-adresse-geschaedigter-1" placeholder="Beispiel: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa">
+                    <input type="text" id="krypto-adresse-geschaedigter-1" name="krypto-adresse-geschaedigter-1" placeholder="Beispiel: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa" onchange="generateExplorerLink('waehrung-1', this.value, 'btc-explorer-link-geschaedigter-1')">
+                    <!-- Platz für den Explorer-Link -->
+                    <div id="btc-explorer-link-geschaedigter-1"></div>
 
                     <label for="e-mail-adresse-geschaedigter-1">E-Mail-Adresse des Geschädigten</label>
                     <input type="text" id="e-mail-adresse-geschaedigter-1" name="e-mail-adresse-geschaedigter-1" placeholder="Beispiel: email@gmail.com">
