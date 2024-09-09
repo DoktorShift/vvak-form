@@ -328,12 +328,13 @@ function generateExplorerLink(cryptoSelectId, address, linkContainerId) {
         url = `<a href="https://blockchair.com/litecoin/address/${address}" target="_blank">Litecoin Explorer</a>`;
     } else if (crypto === 'ripple') {
         url = `<a href="https://xrpscan.com/account/${address}" target="_blank">Ripple Explorer</a>`;
-    } else if (crypto === 'usdt') {
-        url = `<a href="https://etherscan.io/address/${address}" target="_blank">Ethereum Explorer</a><br>
-               <a href="https://tronscan.org/#/address/${address}" target="_blank">Tron Explorer</a>`;
-    } else if (crypto === 'usdc') {
-        url = `<a href="https://etherscan.io/address/${address}" target="_blank">Ethereum Explorer</a><br>
-               <a href="https://tronscan.org/#/address/${address}" target="_blank">Tron Explorer</a>`;
+    } else if (crypto === 'usdt' || crypto === 'usdc') {
+        // Prüfen, ob die Adresse eine Ethereum-Adresse (0x) oder Tron-Adresse (T) ist
+        if (address.startsWith('0x')) {
+            url = `<a href="https://etherscan.io/address/${address}" target="_blank">Ethereum Explorer</a>`;
+        } else if (address.startsWith('T')) {
+            url = `<a href="https://tronscan.org/#/address/${address}" target="_blank">Tron Explorer</a>`;
+        }
     }
 
     if (url) {
