@@ -362,3 +362,8 @@ function generateExplorerLink(cryptoSelectId, address, linkContainerId) {
         document.getElementById(linkContainerId).innerHTML = ''; // Clear the link if no valid URL
     }
 }
+
+// replaceDotWithComma Funktion - Königsklasse
+function replaceDotWithComma(inputElement) {
+    inputElement.value = inputElement.value.replace('.', ',');
+}
