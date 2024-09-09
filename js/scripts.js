@@ -335,6 +335,25 @@ function generateExplorerLink(cryptoSelectId, address, linkContainerId) {
         } else if (address.startsWith('T')) {
             url = `<a href="https://tronscan.org/#/address/${address}" target="_blank">Tron Explorer</a>`;
         }
+    } else if (crypto === 'andere') {
+        // Adressvalidierung für andere Kryptowährungen
+        if (address.startsWith('q') || address.startsWith('bitcoincash:')) {
+            url = `<a href="https://blockchair.com/bitcoin-cash/address/${address}" target="_blank">Bitcoin Cash Explorer</a>`;
+        } else if (address.startsWith('X')) {
+            url = `<a href="https://blockchair.com/dash/address/${address}" target="_blank">Dash Explorer</a>`;
+        } else if (address.startsWith('D')) {
+            url = `<a href="https://blockchair.com/dogecoin/address/${address}" target="_blank">Dogecoin Explorer</a>`;
+        } else if (address.startsWith('t1') || address.startsWith('t3')) {
+            url = `<a href="https://blockchair.com/zcash/address/${address}" target="_blank">Zcash Explorer</a>`;
+        } else if (address.startsWith('4')) {
+            url = `<a href="https://xmrchain.net/" target="_blank">Monero Explorer</a>`;
+        } else if (address.startsWith('addr1')) {
+            url = `<a href="https://cardanoscan.io/address/${address}" target="_blank">Cardano Explorer</a>`;
+        } else if (address.startsWith('1')) {
+            url = `<a href="https://polkascan.io/polkadot/account/${address}" target="_blank">Polkadot Explorer</a>`;
+        } else {
+            url = 'Unbekannte Adresse';
+        }
     }
 
     if (url) {
