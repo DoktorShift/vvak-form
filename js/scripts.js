@@ -321,19 +321,17 @@ function generateExplorerLink(cryptoSelectId, address, linkContainerId) {
     let url = '';
 
     if (crypto === 'bitcoin') {
-        url = `https://mempool.space/address/${address}`;
+        url = `<a href="https://mempool.space/address/${address}" target="_blank">Bitcoin Explorer</a>`;
     } else if (crypto === 'ethereum') {
-        url = `https://etherscan.io/address/${address}`;
+        url = `<a href="https://etherscan.io/address/${address}" target="_blank">Ethereum Explorer</a>`;
     } else if (crypto === 'litecoin') {
-        url = `https://blockchair.com/litecoin/address/${address}`;
+        url = `<a href="https://blockchair.com/litecoin/address/${address}" target="_blank">Litecoin Explorer</a>`;
     } else if (crypto === 'ripple') {
-        url = `https://xrpscan.com/account/${address}`;
+        url = `<a href="https://xrpscan.com/account/${address}" target="_blank">Ripple Explorer</a>`;
     } else if (crypto === 'usdt') {
-        // Zeige beide Links für USDT (Ethereum und Tron)
         url = `<a href="https://etherscan.io/address/${address}" target="_blank">Ethereum Explorer</a><br>
                <a href="https://tronscan.org/#/address/${address}" target="_blank">Tron Explorer</a>`;
     } else if (crypto === 'usdc') {
-        // Zeige beide Links für USDC (Ethereum und Tron)
         url = `<a href="https://etherscan.io/address/${address}" target="_blank">Ethereum Explorer</a><br>
                <a href="https://tronscan.org/#/address/${address}" target="_blank">Tron Explorer</a>`;
     }
