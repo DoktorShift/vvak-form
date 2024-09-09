@@ -329,15 +329,17 @@ function generateExplorerLink(cryptoSelectId, address, linkContainerId) {
     } else if (crypto === 'ripple') {
         url = `https://xrpscan.com/account/${address}`;
     } else if (crypto === 'usdt') {
-        // Tether kann auf verschiedenen Blockchains existieren, hier ist ein Beispiel für Ethereum-basierte USDT
-        url = `https://etherscan.io/address/${address}`;
+        // Zeige beide Links für USDT (Ethereum und Tron)
+        url = `<a href="https://etherscan.io/address/${address}" target="_blank">Ethereum Explorer</a><br>
+               <a href="https://tronscan.org/#/address/${address}" target="_blank">Tron Explorer</a>`;
     } else if (crypto === 'usdc') {
-        // USD Coin kann auch auf verschiedenen Blockchains existieren, hier ist ein Beispiel für Ethereum-basierte USDC
-        url = `https://etherscan.io/address/${address}`;
+        // Zeige beide Links für USDC (Ethereum und Tron)
+        url = `<a href="https://etherscan.io/address/${address}" target="_blank">Ethereum Explorer</a><br>
+               <a href="https://tronscan.org/#/address/${address}" target="_blank">Tron Explorer</a>`;
     }
 
     if (url) {
-        document.getElementById(linkContainerId).innerHTML = `<a href="${url}" target="_blank">Transaktion anzeigen</a>`;
+        document.getElementById(linkContainerId).innerHTML = url;
     } else {
         document.getElementById(linkContainerId).innerHTML = ''; // Clear the link if no valid URL
     }
