@@ -308,10 +308,10 @@ function downloadPDF() {
     doc.setFontSize(28);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(0, 51, 102);
-    doc.text("Transaktionsübersicht", 105, 80, null, null, 'center');
+    doc.text("Transaktionsübersicht z.N. des Geschädigten", 105, 80, null, null, 'center');
     doc.setFontSize(16);
     doc.setFont("helvetica", "normal");
-    doc.text("Gerichtsverwertbarer Bericht", 105, 100, null, null, 'center');
+    doc.text("Placeholder", 105, 100, null, null, 'center');
     doc.addPage(); // Neue Seite für den Inhalt
 
     // Stil für den PDF-Inhalt festlegen
