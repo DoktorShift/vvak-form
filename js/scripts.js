@@ -97,7 +97,12 @@ function addTab() {
             </label>
             <input type="text" id="betrag-landeswaehrung-${tabCounter}" name="betrag-landeswaehrung-${tabCounter}" required placeholder="Beispiel: 5000,99" oninput="replaceDotWithComma(this)">
 
-            <label for="währung-landeswaehrung-${tabCounter}">Währung</label>
+            <label for="währung-landeswaehrung-${tabCounter}">Währung
+                <div class="tooltip-icon">
+                    <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                    <span class="tooltiptext">Die lokale Währung, in der der Betrag gesendet wurde.</span>
+                </div>
+            </label>
             <select id="währung-landeswaehrung-${tabCounter}" name="währung-landeswaehrung-${tabCounter}" required>
                 <option value="eur">Euro (EUR)</option>
                 <option value="usd">US-Dollar (USD)</option>
