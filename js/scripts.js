@@ -236,6 +236,9 @@ function downloadPDF() {
     const doc = new jsPDF('p', 'mm', 'a4');
     let yOffset = 20;
 
+    // Den Dateinamen aus dem Eingabefeld holen
+    const fileName = document.getElementById('pdf-filename').value || 'KryptoTransaktion';  // Fallback-Name, falls nichts eingegeben wurde
+
     const summaryContent = document.getElementById('summary-content');
     const cards = summaryContent.querySelectorAll('.card');
 
@@ -296,9 +299,10 @@ function downloadPDF() {
         yOffset += 10;
     });
 
-    doc.save('KryptoTransaktion.pdf');
+    // Verwende den benutzerdefinierten Dateinamen
+    doc.save(`${fileName}.pdf`);
 }
-
+    
 function toggleAndereWaehung(selectElement, otherInputId) {
     const otherInput = document.getElementById(otherInputId);
     if (selectElement.value === 'andere') {
