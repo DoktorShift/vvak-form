@@ -88,7 +88,12 @@
                     </label>
                     <input type="text" id="betrag-landeswaehrung-1" name="betrag-landeswaehrung-1" required step="0.01" placeholder="Beispiel: 5000,99" oninput="replaceDotWithComma(this)">
 
-                    <label for="währung-landeswaehrung-1">Währung</label>
+                    <label for="währung-landeswaehrung-1">Währung
+                        <div class="tooltip-icon">
+                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                            <span class="tooltiptext">Die lokale Währung, in der der Betrag gesendet wurde.</span>
+                        </div>
+                    </label>
                     <select id="währung-landeswaehrung-1" name="währung-landeswaehrung-1" required>
                         <option value="eur">Euro (EUR)</option>
                         <option value="usd">US-Dollar (USD)</option>
@@ -117,32 +122,62 @@
                     <!-- Platz für den Explorer-Link -->
                     <div id="btc-explorer-link-1"></div>
                     
-                    <label for="tx-hash-1">TX-Hash (Individualkennung der Transaktion)</label>
+                    <label for="tx-hash-1">TX-Hash (Individualkennung der Transaktion)
+                        <div class="tooltip-icon">
+                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                            <span class="tooltiptext">Transaktions Hash oder auch Transaktions ID ist die Individualkennung der jeweiligen Transaktion.</span>
+                        </div>
+                    </label>
                     <input type="text" id="tx-hash-1" name="tx-hash-1[]" placeholder="Beispiel: 4b8b1d5b3e2b...">
                 </div>
 
                 <!-- Geschädigtendaten -->
                 <div class="form-section">
                     <div class="section-title">Geschädigtendaten</div>
-                    <label for="krypto-adresse-geschaedigter-1">Krypto-Adresse des Geschädigten</label>
+                    <label for="krypto-adresse-geschaedigter-1">Krypto-Adresse des Geschädigten
+                        <div class="tooltip-icon">
+                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                            <span class="tooltiptext">Die Krypto-Adresse, auf die die gestohlenen Gelder empfangen wurden.</span>
+                        </div>
+                    </label>
                     <input type="text" id="krypto-adresse-geschaedigter-1" name="krypto-adresse-geschaedigter-1" placeholder="Beispiel: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa" oninput="generateExplorerLink('waehrung-1', this.value, 'btc-explorer-link-geschaedigter-1')">
                     <!-- Platz für den Explorer-Link -->
                     <div id="btc-explorer-link-geschaedigter-1"></div>
 
-                    <label for="e-mail-adresse-geschaedigter-1">E-Mail-Adresse des Geschädigten</label>
+                    <label for="e-mail-adresse-geschaedigter-1">E-Mail-Adresse des Geschädigten
+                        <div class="tooltip-icon">
+                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                            <span class="tooltiptext">Die E-Mail-Adresse des Geschädigten, die auf der Börse verwendet wurde.</span>
+                        </div>
+                    </label>
                     <input type="text" id="e-mail-adresse-geschaedigter-1" name="e-mail-adresse-geschaedigter-1" placeholder="Beispiel: email@gmail.com">
 
-                    <label for="benutzername-geschaedigter-1">Benutzername des Geschädigten</label>
+                    <label for="benutzername-geschaedigter-1">Benutzername des Geschädigten
+                        <div class="tooltip-icon">
+                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                            <span class="tooltiptext">Benutzername oder Kontoname des Geschädigten auf der Börse.</span>
+                        </div>
+                    </label>
                     <input type="text" id="benutzername-geschaedigter-1" name="benutzername-geschaedigter-1" placeholder="Beispiel: Mein Benutzername">
                 </div>
 
                 <!-- Beschreibung und Hinweise -->
                 <div class="form-section">
                     <div class="section-title">Beschreibung und Hinweise</div>
-                    <label for="beschreibung-1">Beschreibung der Kontaktaufnahme</label>
+                    <label for="beschreibung-1">Beschreibung der Kontaktaufnahme
+                        <div class="tooltip-icon">
+                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                            <span class="tooltiptext">Beschreiben Sie, wie der Kontakt hergestellt wurde, und weitere relevante Informationen.</span>
+                        </div>
+                    </label>
                     <textarea id="beschreibung-1" name="beschreibung-1" placeholder="Beschreiben Sie, wie der Kontakt hergestellt wurde, und weitere relevante Informationen."></textarea>
 
-                    <label for="weitere-hinweise-1">Weitere Hinweise (Wallets, Anbieter, Apps etc.)</label>
+                    <label for="weitere-hinweise-1">Weitere Hinweise (Wallets, Anbieter, Apps etc.)
+                        <div class="tooltip-icon">
+                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                            <span class="tooltiptext">Geben Sie zusätzliche Informationen an, die für die Untersuchung hilfreich sein könnten.</span>
+                        </div>
+                    </label>
                     <textarea id="weitere-hinweise-1" name="weitere-hinweise-1" placeholder="Geben Sie zusätzliche Informationen an, die für die Untersuchung hilfreich sein könnten."></textarea>
                 </div>
             </div>
@@ -159,13 +194,12 @@
                     <!-- Eingabefeld für benutzerdefinierten Dateinamen -->
                     <div class="form-section">
                         <label for="pdf-filename">Gewünschter Dateiname für das PDF:
-                        <div class="tooltip-icon">
-                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
-                            <span class="tooltiptext">Hier können sie Ihrem Dokument einen Benutzerdefinierten Name zuordnen. Dies kann z.B. eine Vorgangsnummer oder eine persönlich Kennung sein.</span>
-                        </div>
+                            <div class="tooltip-icon">
+                                <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                                <span class="tooltiptext">Hier können sie Ihrem Dokument einen Benutzerdefinierten Name zuordnen. Dies kann z.B. eine Vorgangsnummer oder eine persönlich Kennung sein.</span>
+                            </div>
                         </label>
                         <input type="text" id="pdf-filename" name="pdf-filename" placeholder="Geben Sie den Dateinamen ein" required>
-                        
                     </div>
                     <button type="button" class="button" onclick="downloadPDF()">Daten absenden</button>
                 </div>
