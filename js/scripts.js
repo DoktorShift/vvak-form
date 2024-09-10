@@ -125,7 +125,12 @@ function addTab() {
             <!-- Platz für den Explorer-Link -->
             <div id="btc-explorer-link-${tabCounter}"></div>
             
-            <label for="tx-hash-${tabCounter}">TX-Hash (Individualkennung der Transaktion)</label>
+            <label for="tx-hash-${tabCounter}">TX-Hash (Individualkennung der Transaktion)
+                <div class="tooltip-icon">
+                    <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                    <span class="tooltiptext">Transaktions Hash oder auch Transaktions ID ist die Individualkennung der jeweiligen Transaktion.</span>
+                </div>
+            </label>
             <input type="text" id="tx-hash-${tabCounter}" name="tx-hash-${tabCounter}[]" placeholder="Beispiel: 4b8b1d5b3e2b...">
         </div>
 
@@ -141,10 +146,20 @@ function addTab() {
             <!-- Platz für den Explorer-Link -->
             <div id="btc-explorer-link-geschaedigter-${tabCounter}"></div>
 
-            <label for="e-mail-adresse-geschaedigter-${tabCounter}">E-Mail-Adresse des Geschädigten</label>
+            <label for="e-mail-adresse-geschaedigter-${tabCounter}">E-Mail-Adresse des Geschädigten
+                <div class="tooltip-icon">
+                    <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                    <span class="tooltiptext">E-Mail mit der sich bei der Börse angemeldet wurde.</span>
+                </div>
+            </label>
             <input type="text" id="e-mail-adresse-geschaedigter-${tabCounter}" name="e-mail-adresse-geschaedigter-${tabCounter}" placeholder="Beispiel: email@gmail.com">
 
-            <label for="benutzername-geschaedigter-${tabCounter}">Benutzername des Geschädigten</label>
+            <label for="benutzername-geschaedigter-${tabCounter}">Benutzername des Geschädigten
+                <div class="tooltip-icon">
+                    <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                    <span class="tooltiptext">Benutzerkennung oder Kontoname des eigenen Profils bei der o.g. Börse.</span>
+                </div>
+            </label>
             <input type="text" id="benutzername-geschaedigter-${tabCounter}" name="benutzername-geschaedigter-${tabCounter}" placeholder="Beispiel: Mein Benutzername">
         </div>
 
@@ -158,13 +173,13 @@ function addTab() {
             </label>
             <textarea id="beschreibung-${tabCounter}" name="beschreibung-${tabCounter}" placeholder="Beschreiben Sie, wie der Kontakt hergestellt wurde, und weitere relevante Informationen."></textarea>
 
-            <label for="weitere-hinweise-${tabCounter}">Weitere Hinweise (Wallets, Anbieter, Apps etc.)
+            <label for="weitere-hinweise-${tabCounter}">Weitere Hinweise (Wallets, Portale, Apps etc.)
                 <div class="tooltip-icon">
                     <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
-                    <span class="tooltiptext">Geben Sie zusätzliche Informationen an, die für die Untersuchung hilfreich sein könnten.</span>
+                    <span class="tooltiptext">Geben Sie zusätzliche Informationen an, die für die Ermittlungen hilfreich sein könnten.</span>
                 </div>
             </label>
-            <textarea id="weitere-hinweise-${tabCounter}" name="weitere-hinweise-${tabCounter}" placeholder="Geben Sie zusätzliche Informationen an, die für die Untersuchung hilfreich sein könnten."></textarea>
+            <textarea id="weitere-hinweise-${tabCounter}" name="weitere-hinweise-${tabCounter}" placeholder="Geben Sie zusätzliche Informationen an, die für die Ermittlungen hilfreich sein könnten."></textarea>
         </div>
     `;
 
@@ -287,23 +302,36 @@ function downloadPDF() {
     const summaryContent = document.getElementById('summary-content');
     const cards = summaryContent.querySelectorAll('.card');
 
+    // Titelseite erstellen
+    doc.setFillColor(245, 245, 245); // Leicht grauer Hintergrund
+    doc.rect(0, 0, 210, 297, 'F');  // Ganze Seite füllen
+    doc.setFontSize(28);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(0, 51, 102);
+    doc.text("Transaktionsübersicht", 105, 80, null, null, 'center');
+    doc.setFontSize(16);
+    doc.setFont("helvetica", "normal");
+    doc.text("Gerichtsverwertbarer Bericht", 105, 100, null, null, 'center');
+    doc.addPage(); // Neue Seite für den Inhalt
+
+    // Stil für den PDF-Inhalt festlegen
     cards.forEach((card, cardIndex) => {
         if (cardIndex > 0) {
             doc.addPage();
             yOffset = 20;
         }
 
-        // Render the transaction title as a separate "card"
-        doc.setFontSize(18);
+        // Abschnittstitel (Transaktion x)
+        doc.setFontSize(22);
         doc.setTextColor(0, 51, 102);
         doc.setFont("helvetica", "bold");
-        doc.text(20, yOffset, card.querySelector('h3').textContent);
+        doc.text(card.querySelector('h3').textContent, 20, yOffset);
         yOffset += 12;
 
-        doc.setDrawColor(0, 51, 102);  // Dark blue border
-        doc.setLineWidth(0.5);
-        doc.rect(15, yOffset - 10, 180, 0.5, 'S');  // Line under the title
-        yOffset += 5;
+        doc.setDrawColor(0, 51, 102);  // Dunkelblaue Linie unter dem Titel
+        doc.setLineWidth(0.7);
+        doc.line(20, yOffset, 190, yOffset);
+        yOffset += 10;
 
         const cardContent = card.querySelectorAll('strong');
         doc.setFontSize(12);
@@ -311,23 +339,25 @@ function downloadPDF() {
         doc.setTextColor(0);
 
         cardContent.forEach((element, index) => {
-            let text = element.textContent + " " + element.nextSibling.textContent.trim();
-            const splitText = doc.splitTextToSize(text, 170);
+            let label = element.textContent;
+            let value = element.nextSibling.textContent.trim();
+            const formattedText = `${label}: ${value}`;
+            const splitText = doc.splitTextToSize(formattedText, 170);
 
             if (index === 0 || 
-                text.startsWith('Transaktionsdetails:') || 
-                text.startsWith('Vermögensübertragung/Stehlgut:') || 
-                text.startsWith('Täterspezifische Daten:') || 
-                text.startsWith('Geschädigtendaten:') || 
-                text.startsWith('Beschreibung und Hinweise:')) {
-                yOffset += 6;
+                label.includes('Transaktionsdetails') || 
+                label.includes('Vermögensübertragung/Stehlgut') || 
+                label.includes('Täterspezifische Daten') || 
+                label.includes('Geschädigtendaten') || 
+                label.includes('Beschreibung und Hinweise')) {
+                yOffset += 8;
                 doc.setFont("helvetica", "bold");
             } else {
                 doc.setFont("helvetica", "normal");
             }
 
             splitText.forEach(line => {
-                if (yOffset > 280) {  // Start a new page if space is running out
+                if (yOffset > 280) {  // Neue Seite bei Platzmangel
                     doc.addPage();
                     yOffset = 20;
                 }
@@ -336,15 +366,15 @@ function downloadPDF() {
             });
         });
 
-        // Draw a box around the transaction card for clear separation
-        doc.setDrawColor(0, 51, 102);  // Dark blue border
-        doc.setLineWidth(0.5);
-        doc.rect(15, yOffset - (cardContent.length * 8 + 20), 180, (cardContent.length * 8 + 20), 'S');
+        // Umrandung um den Abschnitt (für geradlinige Struktur)
+        doc.setDrawColor(0, 51, 102);  // Dunkelblaue Umrandung
+        doc.setLineWidth(1.0);
+        doc.rect(15, yOffset - (cardContent.length * 8 + 30), 180, (cardContent.length * 8 + 30), 'S');
 
-        yOffset += 10;
+        yOffset += 15;
     });
 
-    // Verwende den benutzerdefinierten Dateinamen
+    // PDF mit dem benutzerdefinierten Dateinamen speichern
     doc.save(`${fileName}.pdf`);
 }
     
