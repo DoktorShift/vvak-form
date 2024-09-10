@@ -95,7 +95,7 @@ function addTab() {
                     <span class="tooltiptext">Der Betrag in lokaler Währung, der gesendet wurde.</span>
                 </div>
             </label>
-            <input type="text" id="betrag-landeswaehrung-${tabCounter}" name="betrag-landeswaehrung-${tabCounter}" required placeholder="Beispiel: 500 EUR">
+            <input type="text" id="betrag-landeswaehrung-${tabCounter}" name="betrag-landeswaehrung-${tabCounter}" required placeholder="Beispiel: 500 EUR oninput="replaceDotWithComma(this)">">
 
             <label for="währung-landeswaehrung-${tabCounter}">Währung</label>
             <select id="währung-landeswaehrung-${tabCounter}" name="währung-landeswaehrung-${tabCounter}" required>
@@ -109,7 +109,7 @@ function addTab() {
                     <span class="tooltiptext">Der Betrag in der ausgewählten Kryptowährung, der gesendet wurde (z.B. 0.025 BTC).</span>
                 </div>
             </label>
-            <input type="text" id="betrag-krypto-${tabCounter}" name="betrag-krypto-${tabCounter}" placeholder="Beispiel: 0.025 BTC">
+            <input type="text" id="betrag-krypto-${tabCounter}" name="betrag-krypto-${tabCounter}" placeholder="Beispiel: 0.025 BTC oninput="replaceDotWithComma(this)">">
         </div>
 
         <div class="form-section">
