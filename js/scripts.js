@@ -35,10 +35,20 @@ function addTab() {
     newTabContent.innerHTML = `
         <div class="form-section">
             <div class="section-title">Transaktionsdetails</div>
-            <label for="zeitpunkt-${tabCounter}">Zeitpunkt der Transaktion</label>
+            <label for="zeitpunkt-${tabCounter}">Zeitpunkt der Transaktion
+                <div class="tooltip-icon">
+                    <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                    <span class="tooltiptext">Datum und Uhrzeit, zu der die Transaktion durchgeführt wurde.</span>
+                </div>
+            </label>
             <input type="datetime-local" id="zeitpunkt-${tabCounter}" name="zeitpunkt-${tabCounter}" required>
             
-            <label for="krypto-platform-${tabCounter}">Krypto-Börse</label>
+            <label for="krypto-platform-${tabCounter}">Krypto-Börse
+                <div class="tooltip-icon">
+                    <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                    <span class="tooltiptext">Die Handelsplattform oder Börse, über die die Transaktion ausgeführt wurde. Falls ein privates Wallet (unhosted Wallet) verwendet wurde, bitte Name unter "Andere" angeben.</span>
+                </div>
+            </label>
             <select id="krypto-platform-${tabCounter}" name="krypto-platform-${tabCounter}" required onchange="toggleAndereWaehung(this, 'andere-boerse-${tabCounter}')">
                 <option value="" disabled selected>Wählen Sie eine Börse</option>
                 <option value="binance">Binance</option>
@@ -58,7 +68,12 @@ function addTab() {
             </select>
             <input type="text" id="andere-boerse-${tabCounter}" name="andere-boerse-${tabCounter}" placeholder="Bitte Börse oder Name des Wallets angeben" style="display: none;">
 
-            <label for="waehrung-${tabCounter}">Verwendete Kryptowährung</label>
+            <label for="waehrung-${tabCounter}">Verwendete Kryptowährung
+                <div class="tooltip-icon">
+                    <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                    <span class="tooltiptext">Wählen Sie die Kryptowährung aus, die der Täter verwendet hat.</span>
+                </div>
+            </label>
             <select id="waehrung-${tabCounter}" name="waehrung-${tabCounter}[]" required onchange="toggleAndereWaehung(this, 'andere-kryptowaehrung-${tabCounter}'); updateCryptoLabel('waehrung-${tabCounter}', 'crypto-label-${tabCounter}');">
                 <option value="" disabled selected>Wählen Sie eine Kryptowährung</option>
                 <option value="bitcoin">Bitcoin (BTC)</option>
@@ -74,8 +89,13 @@ function addTab() {
 
         <div class="form-section">
             <div class="section-title">Vermögensübertragung/Stehlgut</div>
-            <label for="betrag-landeswaehrung-${tabCounter}">Gesendeter Betrag in Landeswährung</label>
-            <input type="text" id="betrag-landeswaehrung-${tabCounter}" name="betrag-landeswaehrung-${tabCounter}" required placeholder="Beispiel: 500 EUR">
+            <label for="betrag-landeswaehrung-${tabCounter}">Gesendeter Betrag in Landeswährung
+                <div class="tooltip-icon">
+                    <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                    <span class="tooltiptext">Der Betrag in lokaler Währung, der gesendet wurde.</span>
+                </div>
+            </label>
+            <input type="text" id="betrag-landeswaehrung-${tabCounter}" name="betrag-landeswaehrung-${tabCounter}" required placeholder="Beispiel: 5000,99" oninput="replaceDotWithComma(this)">
 
             <label for="währung-landeswaehrung-${tabCounter}">Währung</label>
             <select id="währung-landeswaehrung-${tabCounter}" name="währung-landeswaehrung-${tabCounter}" required>
@@ -83,14 +103,24 @@ function addTab() {
                 <option value="usd">US-Dollar (USD)</option>
             </select>
 
-            <label for="betrag-krypto-${tabCounter}">Gesendeter Betrag in <span id="crypto-label-${tabCounter}">ausgewählter Kryptowährung</span></label>
-            <input type="text" id="betrag-krypto-${tabCounter}" name="betrag-krypto-${tabCounter}" placeholder="Beispiel: 0.025 BTC">
+            <label for="betrag-krypto-${tabCounter}">Gesendeter Betrag in <span id="crypto-label-${tabCounter}">ausgewählter Kryptowährung</span>
+                <div class="tooltip-icon">
+                    <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                    <span class="tooltiptext">Der Betrag in der ausgewählten Kryptowährung, der gesendet wurde (z.B. 0.025 BTC).</span>
+                </div>
+            </label>
+            <input type="text" id="betrag-krypto-${tabCounter}" name="betrag-krypto-${tabCounter}" placeholder="Beispiel: 0,025" oninput="replaceDotWithComma(this)">
         </div>
 
         <div class="form-section">
             <div class="section-title">Täterspezifische Daten</div>
 
-            <label for="krypto-adresse-${tabCounter}">Krypto-Adresse des Beschuldigten</label>
+            <label for="krypto-adresse-${tabCounter}">Krypto-Adresse des Beschuldigten
+                <div class="tooltip-icon">
+                    <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                    <span class="tooltiptext">Geben Sie die Adresse ein, an welche die Kryptowährung gesendet wurde.</span>
+                </div>
+            </label>
             <input type="text" id="krypto-adresse-${tabCounter}" name="krypto-adresse-${tabCounter}[]" required placeholder="Beispiel: bc1qhflsyynztk8787" onchange="generateExplorerLink('waehrung-${tabCounter}', this.value, 'btc-explorer-link-${tabCounter}')">
             <!-- Platz für den Explorer-Link -->
             <div id="btc-explorer-link-${tabCounter}"></div>
@@ -101,7 +131,12 @@ function addTab() {
 
         <div class="form-section">
             <div class="section-title">Geschädigtendaten</div>
-            <label for="krypto-adresse-geschaedigter-${tabCounter}">Krypto-Adresse des Geschädigten</label>
+            <label for="krypto-adresse-geschaedigter-${tabCounter}">Krypto-Adresse des Geschädigten
+                <div class="tooltip-icon">
+                    <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                    <span class="tooltiptext">Die Adresse des Wallets, das die Währung empfangen hat.</span>
+                </div>
+            </label>
             <input type="text" id="krypto-adresse-geschaedigter-${tabCounter}" name="krypto-adresse-geschaedigter-${tabCounter}" placeholder="Beispiel: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa" onchange="generateExplorerLink('waehrung-${tabCounter}', this.value, 'btc-explorer-link-geschaedigter-${tabCounter}')">
             <!-- Platz für den Explorer-Link -->
             <div id="btc-explorer-link-geschaedigter-${tabCounter}"></div>
@@ -115,10 +150,20 @@ function addTab() {
 
         <div class="form-section">
             <div class="section-title">Beschreibung und Hinweise</div>
-            <label for="beschreibung-${tabCounter}">Beschreibung der Kontaktaufnahme</label>
+            <label for="beschreibung-${tabCounter}">Beschreibung der Kontaktaufnahme
+                <div class="tooltip-icon">
+                    <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                    <span class="tooltiptext">Beschreiben Sie, wie der Kontakt hergestellt wurde, und weitere relevante Informationen.</span>
+                </div>
+            </label>
             <textarea id="beschreibung-${tabCounter}" name="beschreibung-${tabCounter}" placeholder="Beschreiben Sie, wie der Kontakt hergestellt wurde, und weitere relevante Informationen."></textarea>
 
-            <label for="weitere-hinweise-${tabCounter}">Weitere Hinweise (Wallets, Anbieter, Apps etc.)</label>
+            <label for="weitere-hinweise-${tabCounter}">Weitere Hinweise (Wallets, Anbieter, Apps etc.)
+                <div class="tooltip-icon">
+                    <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                    <span class="tooltiptext">Geben Sie zusätzliche Informationen an, die für die Untersuchung hilfreich sein könnten.</span>
+                </div>
+            </label>
             <textarea id="weitere-hinweise-${tabCounter}" name="weitere-hinweise-${tabCounter}" placeholder="Geben Sie zusätzliche Informationen an, die für die Untersuchung hilfreich sein könnten."></textarea>
         </div>
     `;
@@ -236,6 +281,9 @@ function downloadPDF() {
     const doc = new jsPDF('p', 'mm', 'a4');
     let yOffset = 20;
 
+    // Den Dateinamen aus dem Eingabefeld holen
+    const fileName = document.getElementById('pdf-filename').value || 'KryptoTransaktion';  // Fallback-Name, falls nichts eingegeben wurde
+
     const summaryContent = document.getElementById('summary-content');
     const cards = summaryContent.querySelectorAll('.card');
 
@@ -296,9 +344,10 @@ function downloadPDF() {
         yOffset += 10;
     });
 
-    doc.save('KryptoTransaktion.pdf');
+    // Verwende den benutzerdefinierten Dateinamen
+    doc.save(`${fileName}.pdf`);
 }
-
+    
 function toggleAndereWaehung(selectElement, otherInputId) {
     const otherInput = document.getElementById(otherInputId);
     if (selectElement.value === 'andere') {

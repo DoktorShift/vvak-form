@@ -156,6 +156,17 @@
                 <div id="summary-modal">
                     <h3>Zusammenfassung Ihrer Eingaben:</h3>
                     <div id="summary-content"></div>
+                    <!-- Eingabefeld für benutzerdefinierten Dateinamen -->
+                    <div class="form-section">
+                        <label for="pdf-filename">Gewünschter Dateiname für das PDF:
+                        <div class="tooltip-icon">
+                            <img src="https://e7.pngegg.com/pngimages/87/647/png-clipart-product-design-brand-logo-font-tooltip-angle-text-thumbnail.png" alt="Tooltip">
+                            <span class="tooltiptext">Hier können sie Ihrem Dokument einen Benutzerdefinierten Name zuordnen. Dies kann z.B. eine Vorgangsnummer oder eine persönlich Kennung sein.</span>
+                        </div>
+                        </label>
+                        <input type="text" id="pdf-filename" name="pdf-filename" placeholder="Geben Sie den Dateinamen ein" required>
+                        
+                    </div>
                     <button type="button" class="button" onclick="downloadPDF()">Daten absenden</button>
                 </div>
             </div>
